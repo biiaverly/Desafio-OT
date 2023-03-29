@@ -15,5 +15,10 @@ class DadosConversoes extends Model
         'meioPagamento',
         'valorInput',
         'usuario',
+        'valorTaxaPagamento',
+        'valorTaxaConversao',
+        'valorBaseLiquido',
+        'valorMoeda',
+        'valorConvertido',
     ];
 }

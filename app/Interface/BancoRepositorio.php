@@ -10,6 +10,6 @@ use Illuminate\Support\Facades\Http;
 
 interface BancoRepositorio
 {
-    public function adicionarBanco(dadosRequest $request): DadosConversoes;
+    public function adicionarBanco(dadosRequest $request,$entidade): DadosConversoes;
     public function filtrarDadosUsuario(): Collection;
 }

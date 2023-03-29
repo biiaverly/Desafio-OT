@@ -10,15 +10,20 @@ use Illuminate\Support\Facades\Auth;
 
 class EloquentRepositorio implements BancoRepositorio
 {
-    public function adicionarBanco(dadosRequest $request):dadosConversoes
+    public function adicionarBanco(dadosRequest $request,$entidade):dadosConversoes
     {
         $array=
         [
             'moedaDestino' => $request -> get('moedaDestino'),
             'meioPagamento' => $request -> meioPagamento,
             'valorInput' => $request -> valorInput,
-            'usuario' => Auth::user()->name,
-        ];  
+            'usuario' => $entidade -> usuario,
+            'valorTaxaPagamento' => $entidade -> valorTaxaPagamento,
+            'valorTaxaConversao' => $entidade -> valorTaxaConversao,
+            'valorBaseLiquido' => $entidade -> valorBaseLiquido,
+            'valorMoeda' => $entidade -> valorMoeda,
+            'valorConvertido' => $entidade -> valorConvertido,
+        ];
         $dados = DadosConversoes::create($array);           
         return ($dados);
 

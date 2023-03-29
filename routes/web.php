@@ -32,5 +32,6 @@ Route::controller(LoginController::class)->group(function()
 Route::middleware(Authenticate::class)->group(function(){
     Route::get('/conversao', [ConversaoController::class,'index'])->name('conversao.home');
     Route::post('/conversao',[ConversaoController::class,'store'])->name('conversao.store');
+    Route::get('/conversao/{id}',[ConversaoController::class,'visualizarDados'])->name('posconversao.home');
 
 });
