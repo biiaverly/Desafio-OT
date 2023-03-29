@@ -3,7 +3,6 @@
 namespace App\Entity;
 
 use Spatie\DataTransferObject\DataTransferObject;
-
 class conversaoEntity extends DataTransferObject
 {
     public $valorTaxaPagamento;

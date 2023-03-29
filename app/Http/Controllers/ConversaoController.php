@@ -5,8 +5,11 @@ namespace App\Http\Controllers;
 use App\Http\Requests\dadosRequest;
 use App\Interface\BancoRepositorio;
 use App\Interface\ConversaoInterface;
+use App\Jobs\EnviarEmail;
+use App\Mail\Email;
 use App\Models\DadosConversoes;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class ConversaoController extends Controller
 {
@@ -23,6 +26,9 @@ class ConversaoController extends Controller
         // dd($dadosUsuario);
         $dadosInseridos = $repositorio->adicionarBanco($request,$dadosUsuario);        
         $usuario = Auth::user();
+        $email = new EnviarEmail($dadosUsuario,$moeda,$metodoPagamento,$valorInput,$usuario);
+        dispatch($email);
+
         return to_route('posconversao.home',$dadosInseridos->id);
     }
     public function visualizarDados(DadosConversoes $banco)
