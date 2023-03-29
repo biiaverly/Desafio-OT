@@ -11,10 +11,5 @@ Taxa de pagamento: R$ {{ $valorTaxaPagamento }}<br>
 Taxa de conversão: R$ {{ $valorTaxaConversao }}<br>
 Valor utilizado para conversão descontando as taxas: R$ {{ $valorBaseLiquido }}<br>
 
-Acesse aqui seu historico de conversões:
-
-@component('mail::button', ['url' => route('dadosHistorico')])
-    Ver dados
-@endcomponent
 
 @endcomponent
