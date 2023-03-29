@@ -1,0 +1,22 @@
+<x-layout title="">
+    @if(session()->has('mensagemSucesso'))
+    <div class="alert alert-success">
+        {{ session('mensagemSucesso') }}
+    </div>
+    @endif  
+    <div class="row mb-2">  
+        <div class="col-2" >
+            @if(!Auth::check())
+            <a href='{{ route('criarUsuario') }}'><button style="background-color: #ceccccbb;">Criação de novo usuario</button></a>                
+            @endif
+        </div>           
+            
+          @auth           
+          <div class="col-2">
+              <a href='{{ route('home') }}'><button style="background-color: #ceccccbb;">Conversão de moeda</button></a>                
+            </div>
+        @endauth
+    </div> 
+</x-layout>
+            
+    
