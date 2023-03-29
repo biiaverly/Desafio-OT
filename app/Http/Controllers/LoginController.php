@@ -23,7 +23,7 @@ class LoginController extends Controller
             return redirect()->back()->with('mensagemSucesso','Verificar usuario e senha.'); 
         }
         $request->session()->flash('mensagemSucesso',"Login realizado.");  
-        return to_route('conversao.home');  
+        return to_route('home');  
     }    
 
     public function create(Request $request)
@@ -35,26 +35,23 @@ class LoginController extends Controller
     {
         $request->validate(
             [   
-                'name' => 'required|min:3',
-                'email' => 'required|email',
+                'name' => ['required','string','min:3','unique:users'],
+                'email' => ['required','email','unique:users'],
                 'password' => 'required'
             ],
             [
                 'name.required' => 'Informe um nome valido.',
                 'email.required' => 'Informe um email valido.',
-                'password.required' => 'É necessário informar um password.'   
-            ]);
-            
+                'password.required' => 'É necessário informar um password.',
+                'email.unique' => 'Email ja cadastrado no sistema.',
+                'name.unique' => 'Nome ja cadastrado no sistema.' 
+ 
+            ]);            
         $dados = $request->except(['_token']);
-        $verificarUsuario = $usuarioTabela->where('email',$request->email)->get();
-        if($verificarUsuario[0]['name']<>null)
-        {
-            return to_route('criarUsuario')->with(['mensagemSucesso' => 'Usuario já cadastrado no sistema.']);
-        }
         $dados['password'] = Hash::make($dados['password']);
         $usuario = User::create($dados);
         Auth::login($usuario);
-        return to_route('conversao.home')->with(['mensagemSucesso' => 'Usuario cadastrado.']);
+        return to_route('home')->with(['mensagemSucesso' => 'Usuario cadastrado.']);
     }
 
     public function destroy()
