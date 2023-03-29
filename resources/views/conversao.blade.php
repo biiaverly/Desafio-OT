@@ -1,5 +1,5 @@
 <x-layout title="Conversão de valor: ">  
-    <form action="{{ route('conversao.home')}}" method="post" enctype="multipart/form-data">
+    <form action="{{ route('conversao.store')}}" method="post" enctype="multipart/form-data">
         @csrf        
         <div class="row mb-2">                
             <div class="col-2">
