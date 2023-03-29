@@ -13,7 +13,7 @@
             
           @auth           
           <div class="col-2">
-              <a href='{{ route('home') }}'><button style="background-color: #ceccccbb;">Conversão de moeda</button></a>                
+              <a href='{{ route('conversao.home') }}'><button style="background-color: #ceccccbb;">Conversão de moeda</button></a>                
             </div>
         @endauth
     </div> 
