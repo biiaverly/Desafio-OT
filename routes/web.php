@@ -33,5 +33,6 @@ Route::middleware(Authenticate::class)->group(function(){
     Route::get('/conversao', [ConversaoController::class,'index'])->name('conversao.home');
     Route::post('/conversao',[ConversaoController::class,'store'])->name('conversao.store');
     Route::get('/conversao/{id}',[ConversaoController::class,'visualizarDados'])->name('posconversao.home');
-
 });
+Route::get('/historico',[ConversaoController::class,'historicoDados'])->name('dadosHistorico')->middleware(Authenticate::class);
+

@@ -30,4 +30,9 @@ class ConversaoController extends Controller
         $dadosInseridos = $banco->orderBy('id','desc')->first();
         return view('dados')->with('dados',$dadosInseridos);
     }
+    public function historicoDados(BancoRepositorio $repositorio)
+    {
+        $dadosHistorico = $repositorio->filtrarDadosUsuario();
+        return view('dadosHistorico',[Auth::user()->id])->with('dados',$dadosHistorico);
+    } 
 }

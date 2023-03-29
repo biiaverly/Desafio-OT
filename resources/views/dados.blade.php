@@ -23,7 +23,10 @@
             <td>{{ $dados->created_at }}</td>
           </tr>
         </tbody>
-      </table>   
+      </table> 
+      <div class="col-2">
+        <a href='{{ route('dadosHistorico') }}'><button style="background-color: #ceccccbb;">Historico de conversoes</button></a>                
+      </div>    
     </x-layout>
             
     
