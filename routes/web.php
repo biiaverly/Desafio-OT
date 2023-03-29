@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\ConversaoController;
 use App\Http\Controllers\LoginController;
+use App\Http\Middleware\Authenticate;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,4 +27,8 @@ Route::controller(LoginController::class)->group(function()
     Route::get('/logout','destroy')->name('logout');
     Route::get('/login/registar','create')->name('criarUsuario');
     Route::post('/login/registar','store')->name('salvarUsuario');
+});
+
+Route::middleware(Authenticate::class)->group(function(){
+    Route::get('/conversao', [ConversaoController::class,'index'])->name('conversao.home');
 });
