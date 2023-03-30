@@ -1,9 +1,15 @@
 <x-layout title="Login">
     @if(session()->has('mensagemSucesso'))
-    <div class="alert alert-danger">
+    <div class="alert alert-primary">
         {{ session('mensagemSucesso') }}
     </div>
     @endif
+    
+    @if(session()->has('mensagemErro'))
+        <div class="alert alert-danger">
+            {{ session('mensagemErro') }}
+        </div>
+    @endif 
     
     <form method="post">
         @csrf
