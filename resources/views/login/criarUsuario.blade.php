@@ -1,27 +1,60 @@
 <x-layout title="Novo usuário">
-
-    @if(session()->has('mensagemSucesso'))
-    <div class="alert alert-danger">
-        {{ session('mensagemSucesso') }}
-    </div>
-    @endif
-    
     <form method="post">
+        @if(session()->has('mensagemSucesso'))
+        <div class="alert alert-success">
+            {{ session('mensagemSucesso') }}
+        </div>
+        @endif
+
 
         @csrf
-        <div class="form-group">
-            <label for="name" class="form-label">Nome</label>
-            <input type="text" name="name" id="name" class="form-control">
+        <div class="form-group row">
+            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Nome') }}</label>
+
+            <div class="col-md-6">
+                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+
+                @error('name')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
+            </div>
         </div>
 
-        <div class="form-group">
-            <label for="email" class="form-label">E-mail</label>
-            <input type="email" name="email" id="email" class="form-control">
+        <div class="form-group row">
+            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Email') }}</label>
+
+            <div class="col-md-6">
+                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+
+                @error('email')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
+            </div>
         </div>
 
-        <div class="form-group">
-            <label for="password" class="form-label">Senha</label>
-            <input type="password" name="password" id="password" class="form-control">
+        <div class="form-group row">
+            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Senha') }}</label>
+
+            <div class="col-md-6">
+                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password_confirmation" required>
+
+                @error('password')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirmação de Senha') }}</label>
+
+            <div class="col-md-6">
+                <input id="password-confirm" type="password" class="form-control" name="password" required>
+            </div>
         </div>
 
         <button class="btn btn-primary mt-3">
